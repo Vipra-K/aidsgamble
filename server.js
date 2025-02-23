@@ -16,11 +16,13 @@ const getNextSaturdayMidnightUTC = () => {
   let now = new Date();
   let nextSaturday = new Date(now);
 
-  nextSaturday.setUTCDate(now.getUTCDate() + ((6 - now.getUTCDay() + 7) % 7));
+  let daysUntilSaturday = (6 - now.getUTCDay() + 7) % 7 || 7; // Ensure it's always next Saturday
+  nextSaturday.setUTCDate(now.getUTCDate() + daysUntilSaturday);
   nextSaturday.setUTCHours(0, 0, 0, 0);
 
   return nextSaturday.getTime();
 };
+
 
 // Fetch and store leaderboard data
 const fetchData = async () => {
